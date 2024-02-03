@@ -3,6 +3,9 @@ frameworkVersion: '3'
 
 useDotenv: true
 
+package:
+  individually: true
+
 provider:
   name: aws
   runtime: nodejs18.x
