@@ -26,5 +26,5 @@ functions:
     events:
       - http:
           method: GET
-          path: /users/${id}
+          path: /users/{id}
           private: true
