@@ -1,0 +1,30 @@
+service: aws-node-typescript
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-central-1
+
+  environment:
+    STAGE: ${sls:stage}
+
+functions:
+  saveUser:
+    name: ${self:service}-${sls:stage}-saveUser
+    handler: src/users/lambdas/saveUser.handler
+    timeout: 30
+      events:
+        - http:
+            method: POST
+            path: /users
+            private: true
+  getUser:
+    name: ${self:service}-${sls:stage}-getUser
+    handler: src/users/lambdas/saveUser.handler
+    timeout: 30
+      events:
+        - http:
+            method: GET
+            path: /users/${id}
+            private: true
