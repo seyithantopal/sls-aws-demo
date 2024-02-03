@@ -1,11 +1,17 @@
 service: aws-node-typescript
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs18.x
   region: eu-central-1
-  stage: ${opt:stage, 'dev'}
+  stage: ${sls:stage, 'dev'}
+  apiGateway:
+    apiKeys:
+      - name: ${sls:stage}_API_KEY
+        value: ${env:API_GATEWAY_KEY, 'test'}
   environment:
     STAGE: ${sls:stage}
 
