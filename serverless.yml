@@ -11,7 +11,7 @@ provider:
   apiGateway:
     apiKeys:
       - name: ${sls:stage}_API_KEY
-        value: ${env:API_GATEWAY_KEY, 'test'}
+        value: ${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}
   environment:
     STAGE: ${sls:stage}
 
