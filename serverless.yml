@@ -14,17 +14,17 @@ functions:
     name: ${self:service}-${sls:stage}-saveUser
     handler: src/users/lambdas/saveUser.handler
     timeout: 30
-      events:
-        - http:
-            method: POST
-            path: /users
-            private: true
+    events:
+      - http:
+          method: POST
+          path: /users
+          private: true
   getUser:
     name: ${self:service}-${sls:stage}-getUser
     handler: src/users/lambdas/saveUser.handler
     timeout: 30
-      events:
-        - http:
-            method: GET
-            path: /users/${id}
-            private: true
+    events:
+      - http:
+          method: GET
+          path: /users/${id}
+          private: true
