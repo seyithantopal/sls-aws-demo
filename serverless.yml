@@ -27,7 +27,7 @@ functions:
           private: true
   getUser:
     name: ${self:service}-${sls:stage}-getUser
-    handler: src/users/lambdas/saveUser.handler
+    handler: src/users/lambdas/getUser.handler
     timeout: 30
     events:
       - http:
