@@ -6,6 +6,9 @@ useDotenv: true
 package:
   individually: true
 
+plugins:
+  - serverless-esbuild
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -17,6 +20,10 @@ provider:
         value: ${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}
   environment:
     STAGE: ${sls:stage}
+
+custom:
+  esbuild:
+    sourcemap: false
 
 functions:
   saveUser:
