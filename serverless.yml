@@ -8,6 +8,7 @@ package:
 
 plugins:
   - serverless-esbuild
+  - serverless-offline
 
 provider:
   name: aws
