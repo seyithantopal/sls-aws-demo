@@ -9,6 +9,7 @@ package:
 plugins:
   - serverless-esbuild
   - serverless-offline
+  - serverless-step-functions
 
 provider:
   name: aws
@@ -55,7 +56,11 @@ functions:
           method: POST
           path: /users/create
           private: true
-
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Resource: '*'
+        Action:
+          - 'states:StartExecution'
 stepFunctions:
   stateMachines:
     createUser: ${file(src/users/usersStepFunctionsServerless.yaml)}
