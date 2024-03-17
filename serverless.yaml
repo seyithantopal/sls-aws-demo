@@ -9,6 +9,7 @@ package:
 plugins:
   - serverless-esbuild
   - serverless-offline
+  - serverless-step-functions
 
 provider:
   name: aws
@@ -21,6 +22,11 @@ provider:
         value: ${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}
   environment:
     STAGE: ${sls:stage}
+  iamRoleStatements: # Define IAM role statements for the entire service
+    - Effect: 'Allow'
+      Action:
+        - 'states:StartExecution'
+      Resource: '*'
 
 custom:
   myStage: ${sls:stage, self:provider.stage}
@@ -69,11 +75,6 @@ functions:
           method: POST
           path: /users/create/userData
           private: true
-    iamRoleStatements:
-      - Effect: 'Allow'
-        Resource: '*'
-        Action:
-          - 'states:StartExecution'
 
 stepFunctions:
   stateMachines:

@@ -9,8 +9,8 @@ import {
 export const handler = async (
   event: APIGatewayEvent,
 ): Promise<APIGatewayProxyResult> => {
-  console.log('getUserData lambda');
-  const payload: User = JSON.parse(event.body as string);
+  console.log('getUserData lambda: ', event);
+  // const payload: User = JSON.parse(event.body as string);
 
   const stateMachineArn =
     'arn:aws:states:eu-central-1:851725547947:stateMachine:createUserStepFunction';
@@ -31,7 +31,6 @@ export const handler = async (
     statusCode: 200,
     body: JSON.stringify({
       message: 'User data fetched successfully',
-      payload: response,
     }),
   };
 };
