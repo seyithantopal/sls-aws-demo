@@ -16,9 +16,10 @@ export const handler = async (
   console.log('get-user-data handler event: ', {
     event,
   });
+  const existingEmail = 'johndoe@acme.com';
 
   return {
     ...event,
-    isExisted: true,
+    isExisted: event.email === existingEmail,
   };
 };

@@ -16,8 +16,7 @@ definition:
           Next: UserCreationSkipped
       Default: CreateUser
     UserCreationSkipped:
-      Type: Fail
-      Cause: 'User already exists'
+      Type: Success
     CreateUser:
       Type: Task
       Resource:
