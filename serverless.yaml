@@ -55,6 +55,11 @@ functions:
           method: POST
           path: /users/create
           private: true
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Resource: '*'
+        Action:
+          - 'states:StartExecution'
 
 stepFunctions:
   stateMachines:

@@ -1,7 +1,6 @@
 import { createUser } from '@users/controllers/createUser.controller';
 import { User } from '@users/types/User';
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
-import AWS from 'aws-sdk';
 
 export const handler = async (
   event: APIGatewayEvent,

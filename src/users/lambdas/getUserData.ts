@@ -1,7 +1,11 @@
 import { createUser } from '@users/controllers/createUser.controller';
 import { User } from '@users/types/User';
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
-import AWS from 'aws-sdk';
+import {
+  SFNClient,
+  StartExecutionCommand,
+  StartExecutionCommandInput,
+} from '@aws-sdk/client-sfn';
 
 export const handler = async (
   event: APIGatewayEvent,
@@ -10,17 +14,18 @@ export const handler = async (
   try {
     const payload: User = JSON.parse(event.body as string);
 
-    const stepFunctions = new AWS.StepFunctions();
-
     const stateMachineArn =
       'arn:aws:states:eu-central-1:851725547947:stateMachine:createUserStepFunction';
 
-    const params: AWS.StepFunctions.StartExecutionInput = {
+    const params: StartExecutionCommandInput = {
       stateMachineArn,
       input: JSON.stringify(payload),
     };
 
-    await stepFunctions.startExecution(params).promise();
+    const response = await new SFNClient({}).send(
+      new StartExecutionCommand(params),
+    );
+    console.log(response);
 
     return new Promise((resolve) => {
       resolve({
