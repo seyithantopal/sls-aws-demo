@@ -1,4 +1,3 @@
-import { createUser } from '@users/controllers/createUser.controller';
 import { User } from '@users/types/User';
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 import {
@@ -9,7 +8,6 @@ import {
 
 export const handler = async (
   event: APIGatewayEvent,
-  { awsRequestId, invokedFunctionArn }: Context,
 ): Promise<APIGatewayProxyResult> => {
   try {
     const payload: User = JSON.parse(event.body as string);
@@ -27,23 +25,20 @@ export const handler = async (
     );
     console.log(response);
 
-    return new Promise((resolve) => {
-      resolve({
-        statusCode: 200,
-        body: JSON.stringify({
-          message: 'User data fetched successfully',
-        }),
-      });
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: 'User data fetched successfully',
+        payload: response,
+      }),
+    };
   } catch (error) {
     console.error('error: ', error);
-    return new Promise((resolve) => {
-      resolve({
-        statusCode: 500,
-        body: JSON.stringify({
-          message: 'Something went wrong during getting user data',
-        }),
-      });
-    });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: 'Something went wrong during getting user data',
+      }),
+    };
   }
 };
