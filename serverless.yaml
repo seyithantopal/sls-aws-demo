@@ -60,6 +60,20 @@ functions:
         Resource: '*'
         Action:
           - 'states:StartExecution'
+  getUserData:
+    name: ${self:service}-${sls:stage}-getUserData
+    handler: src/users/lambdas/getUserData.handler
+    timeout: 30
+    events:
+      - http:
+          method: POST
+          path: /users/create/userData
+          private: true
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Resource: '*'
+        Action:
+          - 'states:StartExecution'
 
 stepFunctions:
   stateMachines:
