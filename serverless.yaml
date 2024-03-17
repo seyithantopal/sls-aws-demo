@@ -60,11 +60,6 @@ functions:
           method: POST
           path: /users/create
           private: true
-    iamRoleStatements:
-      - Effect: 'Allow'
-        Resource: '*'
-        Action:
-          - 'states:StartExecution'
   getUserData:
     name: ${self:service}-${sls:stage}-getUserData
     handler: src/users/lambdas/getUserData.handler

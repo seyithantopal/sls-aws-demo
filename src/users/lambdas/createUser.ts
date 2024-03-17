@@ -14,7 +14,7 @@ export const handler = async (
   // const payload: User = JSON.parse(event.body as string);
 
   const stateMachineArn =
-    'arn:aws:states:eu-central-1:851725547947:stateMachine:createUserStepFunction';
+    'arn:aws:states:eu-central-1:851725547947:stateMachine:createUser';
 
   const params: StartExecutionCommandInput = {
     stateMachineArn,
