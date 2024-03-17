@@ -21,6 +21,11 @@ provider:
         value: ${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}
   environment:
     STAGE: ${sls:stage}
+  iamRoleStatements: # Define IAM role statements for the entire service
+    - Effect: 'Allow'
+      Action:
+        - 'states:StartExecution'
+      Resource: '*'
 
 custom:
   myStage: ${sls:stage, self:provider.stage}
@@ -46,3 +51,30 @@ functions:
           method: GET
           path: /users/{id}
           private: true
+  createUser:
+    name: ${self:service}-${sls:stage}-createUser
+    handler: src/users/lambdas/createUser.handler
+    timeout: 30
+    events:
+      - http:
+          method: POST
+          path: /users/create
+          private: true
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Resource: '*'
+        Action:
+          - 'states:StartExecution'
+  getUserData:
+    name: ${self:service}-${sls:stage}-getUserData
+    handler: src/users/lambdas/getUserData.handler
+    timeout: 30
+    events:
+      - http:
+          method: POST
+          path: /users/create/userData
+          private: true
+
+stepFunctions:
+  stateMachines:
+    createUser: ${file(src/users/usersStepFunctionsServerless.yaml)}
