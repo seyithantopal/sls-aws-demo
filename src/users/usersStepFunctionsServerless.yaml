@@ -23,4 +23,5 @@ definition:
       Resource:
         Fn::GetAtt: [create-user, Arn]
       Next: UserCreatedSuccess
+    UserCreatedSuccess:
       Type: Success
