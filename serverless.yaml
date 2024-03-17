@@ -19,7 +19,7 @@ provider:
   apiGateway:
     apiKeys:
       - name: ${sls:stage}_API_KEY
-        value: "${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}"
+        value: 'GX83SFHVFISZDNE4N32L'
   environment:
     STAGE: ${sls:stage}
   iamRoleStatements: # Define IAM role statements for the entire service
