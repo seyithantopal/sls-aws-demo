@@ -25,7 +25,7 @@ export const handler = async (
   console.log('getUserData lambda: ', payload);
 
   const stateMachineArn =
-    'arn:aws:states:eu-central-1:851725547947:stateMachine:GetUserData';
+    'arn:aws:states:eu-central-1:851725547947:stateMachine:getUserData';
 
   const params: StartExecutionCommandInput = {
     stateMachineArn,
