@@ -17,7 +17,7 @@ export const handler = async (
 
   const params: StartExecutionCommandInput = {
     stateMachineArn,
-    input: JSON.stringify(payload),
+    input: JSON.stringify({ id: '2' }),
   };
 
   const response = await new SFNClient({

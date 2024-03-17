@@ -19,7 +19,7 @@ export const handler = async (
   const params: StartExecutionCommandInput = {
     stateMachineArn,
     input: JSON.stringify({
-      id: 1,
+      id: '1',
     }),
   };
 
