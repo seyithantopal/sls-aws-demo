@@ -46,20 +46,15 @@ functions:
           method: GET
           path: /users/{id}
           private: true
-  getUserData:
-    name: ${self:service}-${sls:stage}-getUserData
-    handler: src/users/lambdas/getUserData.handler
+  createUser:
+    name: ${self:service}-${sls:stage}-createUser
+    handler: src/users/lambdas/createUser.handler
     timeout: 30
     events:
       - http:
           method: POST
           path: /users/create
           private: true
-    iamRoleStatements:
-      - Effect: 'Allow'
-        Resource: '*'
-        Action:
-          - 'states:StartExecution'
 
 stepFunctions:
   stateMachines:
