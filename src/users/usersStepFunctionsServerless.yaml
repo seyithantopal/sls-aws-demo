@@ -13,8 +13,8 @@ definition:
       Choices:
         - Variables: '$.isExisted'
           BooleanEquals: true
-          Next: CreateUser
-      Default: UserCreationSkipped
+          Next: UserCreationSkipped
+      Default: CreateUser
     UserCreationSkipped:
       Type: Fail
       Cause: 'User already exists'
