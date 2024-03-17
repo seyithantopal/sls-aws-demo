@@ -52,6 +52,10 @@ functions:
           path: /users/{id}
           private: true
   createUser:
+    name: ${self:service}-${sls:stage}-createUser
+    handler: src/users/lambdas/createUser.handler
+    timeout: 120
+  createUserTrigger:
     name: ${self:service}-${sls:stage}-createUserTrigger
     handler: src/users/lambdas/createUserTrigger.handler
     timeout: 30
