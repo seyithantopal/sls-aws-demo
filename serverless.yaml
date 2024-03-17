@@ -51,11 +51,11 @@ functions:
           method: GET
           path: /users/{id}
           private: true
-  createUser:
-    name: ${self:service}-${sls:stage}-createUser
-    handler: src/users/lambdas/createUser.handler
+  sampleLambda:
+    name: ${self:service}-${sls:stage}-sampleLambda
+    handler: src/users/lambdas/sampleLambda.handler
     timeout: 120
-  createUserTrigger:
+  createUser:
     name: ${self:service}-${sls:stage}-createUserTrigger
     handler: src/users/lambdas/createUserTrigger.handler
     timeout: 30

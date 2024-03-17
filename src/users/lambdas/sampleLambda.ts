@@ -12,7 +12,7 @@ type CreateUserStepFunctionInput = {
 export const handler = async (
   event: CreateUserStepFunctionInput,
 ): Promise<CreateUserStepFunctionInput> => {
-  console.log('createUser handler event: ', {
+  console.log('sampleLambda handler event: ', {
     event,
   });
 
