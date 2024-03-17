@@ -9,6 +9,7 @@ import {
 export const handler = async (
   event: APIGatewayEvent,
 ): Promise<APIGatewayProxyResult> => {
+  console.log('getUserData lambda');
   const payload: User = JSON.parse(event.body as string);
 
   const stateMachineArn =
@@ -19,9 +20,11 @@ export const handler = async (
     input: JSON.stringify(payload),
   };
 
-  const response = await new SFNClient({})
+  const response = await new SFNClient({
+    region: 'eu-central-1',
+  })
     .send(new StartExecutionCommand(params))
-    .catch((res) => console.log('error is occured'));
+    .catch((res) => console.log('error is occured: ', res));
   console.log(response);
 
   return {
