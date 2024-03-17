@@ -9,7 +9,6 @@ package:
 plugins:
   - serverless-esbuild
   - serverless-offline
-  - serverless-step-functions
 
 provider:
   name: aws
@@ -19,7 +18,7 @@ provider:
   apiGateway:
     apiKeys:
       - name: ${sls:stage}_API_KEY
-        value: 'GX83SFHVFISZDNE4N32L'
+        value: ${env:API_GATEWAY_KEY, 'GX83SFHVFISZDNE4N32L'}
   environment:
     STAGE: ${sls:stage}
   iamRoleStatements: # Define IAM role statements for the entire service
