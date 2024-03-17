@@ -11,26 +11,12 @@ export const handler = async (
   { invokedFunctionArn }: Context,
 ): Promise<APIGatewayProxyResult> => {
   console.log('createUser lambda');
-  const payload: User = JSON.parse(event.body as string);
-
-  const stateMachineArn =
-    'arn:aws:states:eu-central-1:851725547947:stateMachine:createUserStepFunction';
-
-  const params: StartExecutionCommandInput = {
-    stateMachineArn,
-    input: JSON.stringify(payload),
-  };
-
-  const response = await new SFNClient({}).send(
-    new StartExecutionCommand(params),
-  );
-  console.log(response);
+  // const payload: User = JSON.parse(event.body as string);
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       message: 'User created successfully',
-      payload: response,
     }),
   };
 };
