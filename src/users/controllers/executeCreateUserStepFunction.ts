@@ -7,7 +7,7 @@ import { User } from '@users/types/User';
 
 export const executeCreateUserStepFunction = async (input: User) => {
   const stateMachineArn =
-    'arn:aws:states:eu-central-1:851725547947:stateMachine:getUserData';
+    'arn:aws:states:eu-central-1:851725547947:stateMachine:createUserStepFunction';
 
   const params: StartExecutionCommandInput = {
     stateMachineArn,

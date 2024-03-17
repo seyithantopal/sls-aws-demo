@@ -1,9 +1,4 @@
 name: createUserStepFunction-${sls:stage}
-events:
-  - http:
-      method: POST
-      path: /users/create
-      private: true
 definition:
   Comment: 'A Step Function to create a user.'
   StartAt: GetUserData
