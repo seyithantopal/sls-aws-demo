@@ -51,9 +51,13 @@ functions:
           method: GET
           path: /users/{id}
           private: true
-  sampleLambda:
-    name: ${self:service}-${sls:stage}-sampleLambda
-    handler: src/users/lambdas/sampleLambda.handler
+  get-user-data:
+    name: ${self:service}-${sls:stage}-get-user-data
+    handler: src/users/lambdas/get-user-data.handler
+    timeout: 120
+  create-user:
+    name: ${self:service}-${sls:stage}-create-user
+    handler: src/users/lambdas/create-user.handler
     timeout: 120
   create-user-trigger:
     name: ${self:service}-${sls:stage}-create-user-trigger

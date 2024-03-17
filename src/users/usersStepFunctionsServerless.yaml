@@ -6,5 +6,21 @@ definition:
     GetUserData:
       Type: Task
       Resource:
-        Fn::GetAtt: [sampleLambda, Arn]
-      End: true
+        Fn::GetAtt: [get-user-data, Arn]
+    Next: ShouldCreateUser
+    ShouldCreateUser:
+      Type: Choice
+      Choices:
+        - Variables: '$.isExisted'
+          BooleanEquals: true
+          Next: CreateUser
+      Default: UserCreationSkipped
+    UserCreationSkipped:
+      Type: Fail
+      Cause: 'User already exists'
+    CreateUser:
+      Type: Task
+      Resource:
+        Fn::GetAtt: [create-user, Arn]
+      Next: UserCreatedSuccess
+      Type: Success

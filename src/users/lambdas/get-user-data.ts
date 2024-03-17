@@ -5,7 +5,7 @@ import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 export const handler = async (
   event: APIGatewayEvent,
 ): Promise<APIGatewayEvent> => {
-  console.log('sampleLambda handler event: ', {
+  console.log('get-user-data handler event: ', {
     event,
   });
 
