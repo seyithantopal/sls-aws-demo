@@ -6,11 +6,23 @@ import {
   StartExecutionCommandInput,
 } from '@aws-sdk/client-sfn';
 
+const parseJson = <T>(body: unknown): T => {
+  if (typeof body === 'object') {
+    return body as T;
+  }
+  if (!body || typeof body !== 'string') {
+    throw 'The body is empty';
+  }
+  const jsonObject = JSON.parse(body) as T;
+  return jsonObject;
+};
+
 export const handler = async (
   event: APIGatewayEvent,
 ): Promise<APIGatewayProxyResult> => {
   console.log('getUserData lambda: ', event);
-  const payload: User = JSON.parse(event.body as string);
+  const payload = parseJson<User>(event.body);
+  console.log('getUserData lambda: ', payload);
 
   const stateMachineArn =
     'arn:aws:states:eu-central-1:851725547947:stateMachine:GetUserData';
