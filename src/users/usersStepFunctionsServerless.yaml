@@ -6,5 +6,5 @@ definition:
     GetUserData:
       Type: Task
       Resource:
-        Fn::GetAtt: [getUserData, Arn]
+        Fn::GetAtt: [sampleLambda, Arn]
       End: true

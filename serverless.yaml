@@ -55,6 +55,15 @@ functions:
     name: ${self:service}-${sls:stage}-sampleLambda
     handler: src/users/lambdas/sampleLambda.handler
     timeout: 120
+  create-user-trigger:
+    name: ${self:service}-${sls:stage}-create-user-trigger
+    handler: src/users/lambdas/create-user-trigger.handler
+    timeout: 30
+    events:
+      - http:
+          method: POST
+          path: /users/create
+          private: true
   getUserData:
     name: ${self:service}-${sls:stage}-getUserData
     handler: src/users/lambdas/getUserData.handler
