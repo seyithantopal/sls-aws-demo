@@ -1,0 +1,10 @@
+name: createUserStepFunction-${sls:stage}
+definition:
+  Comment: 'A Step Function to create a user.'
+  StartAt: GetUserData
+  States:
+    GetUserData:
+      Type: Task
+      Resource:
+        Fn::GetAtt: [getUserData, Arn]
+      End: true

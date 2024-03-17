@@ -46,3 +46,16 @@ functions:
           method: GET
           path: /users/{id}
           private: true
+  getUserData:
+    name: ${self:service}-${sls:stage}-getUserData
+    handler: src/users/lambdas/getUserData.handler
+    timeout: 30
+    events:
+      - http:
+          method: POST
+          path: /users/create
+          private: true
+
+stepFunctions:
+  stateMachines:
+    createUser: ${file(src/users/usersStepFunctionsServerless.yaml)}
