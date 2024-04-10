@@ -9,6 +9,7 @@ package:
 plugins:
   - serverless-esbuild
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
